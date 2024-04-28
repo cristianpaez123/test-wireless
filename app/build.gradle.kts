@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -45,4 +48,24 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    //viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
+    //lifeData
+    implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
+    //Activity
+    implementation("androidx.activity:activity-ktx:1.9.0")
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    //Corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+
+}
+kapt {
+    correctErrorTypes = true
 }
