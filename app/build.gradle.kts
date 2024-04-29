@@ -69,6 +69,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
     //hilt
     implementation("com.google.dagger:hilt-android:2.48")
+    //piccaso
+    implementation ("com.squareup.picasso:picasso:2.8")
+
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
 }

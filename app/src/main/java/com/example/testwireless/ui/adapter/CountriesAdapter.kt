@@ -1,5 +1,6 @@
 package com.example.testwireless.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testwireless.R
 import com.example.testwireless.data.model.CountryModel
 import com.example.testwireless.databinding.ItemCountryAdapterBinding
+import com.squareup.picasso.Picasso
 
 class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>() {
 
     var dataCountries: List<CountryModel> = emptyList()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setCountries(dataCountries: List<CountryModel>) {
         this.dataCountries = dataCountries
         notifyDataSetChanged()
@@ -19,7 +22,8 @@ class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding: ItemCountryAdapterBinding = DataBindingUtil.inflate(inflater, R.layout.item_country_adapter, parent, false)
+        val binding: ItemCountryAdapterBinding =
+            DataBindingUtil.inflate(inflater, R.layout.item_country_adapter, parent, false)
         return CountryViewHolder(binding)
     }
 
@@ -32,12 +36,18 @@ class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder
         return dataCountries.size
     }
 
-    inner class CountryViewHolder(private val binding: ItemCountryAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class CountryViewHolder(private val binding: ItemCountryAdapterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(country: CountryModel) {
-            // Aquí asignas el objeto country al enlace de datos
             binding.country = country
-            // Es importante ejecutar esto para que los cambios en los datos se reflejen en la vista
+            if (country.capital.isNullOrEmpty()) {
+                binding.txtCapital.text = "NO TIENE CAPITAL"
+            } else {
+                binding.txtCapital.text = country.capital[0]
+            }
+            binding.txtCountry.text = country.name.official
+            Picasso.get().load(country.flag.png).into(binding.imvFlag)
             binding.executePendingBindings()
         }
     }
