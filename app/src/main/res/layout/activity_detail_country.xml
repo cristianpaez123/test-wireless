@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailCountry"
     android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="PAIS"
+                android:text="@string/country"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -37,8 +36,8 @@
                 android:id="@+id/txtCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
                 android:layout_marginTop="5dp"
+                android:textSize="15dp"
                 tools:text="colombia" />
 
             <TextView
@@ -53,15 +52,15 @@
                 android:id="@+id/txtCapital"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:textSize="15dp"
                 tools:text="bogota" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="REGION"
+                android:text="@string/region"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -69,15 +68,15 @@
                 android:id="@+id/txtRegion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:textSize="15dp"
                 tools:text="bogota" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="SUB-REGION"
+                android:text="@string/sub_region"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -85,15 +84,15 @@
                 android:id="@+id/txtSubRegion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:textSize="15dp"
                 tools:text="bogota" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="AREA"
+                android:text="@string/area"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -101,15 +100,15 @@
                 android:id="@+id/txtArea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:textSize="15dp"
                 tools:text="bogota" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="FIFA"
+                android:text="@string/fifa"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -117,26 +116,26 @@
                 android:id="@+id/txtFifa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:textSize="15dp"
                 tools:text="bogota" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="MAPA"
+                android:text="@string/map"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtMap"
-                android:textColor="#2196F3"
                 android:layout_width="wrap_content"
-                android:textSize="15dp"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:textStyle="bold"
                 tools:text="bogota" />
 
 

@@ -15,7 +15,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providerRetrofit(): Retrofit{
+    fun providerRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://restcountries.com/v3.1/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -24,7 +24,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providerCountryApi(retrofit: Retrofit):CountryApi{
+    fun providerCountryApi(retrofit: Retrofit): CountryApi {
         return retrofit.create(CountryApi::class.java)
     }
 }

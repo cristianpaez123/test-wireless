@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">test wireless</string>
+    <string name="region">REGION</string>
+    <string name="sub_region">SUB-REGION</string>
+    <string name="area">AREA</string>
+    <string name="fifa">FIFA</string>
+    <string name="map">MAPA</string>
+    <string name="country">PAIS</string>
+    <string name="search_country">buscar pais</string>
 </resources>

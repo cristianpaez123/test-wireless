@@ -13,5 +13,5 @@ data class CountryModel(
     val area: Double?,
     val fifa: String?,
     @SerializedName("maps")
-    val map:MapModel
+    val map: MapModel
 ) : Serializable

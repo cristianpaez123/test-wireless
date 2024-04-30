@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class GetCountriesUseCase @Inject constructor(private val repository: CountryRepository) {
 
-    suspend operator fun invoke():List<CountryModel> = repository.getAllCountries()
+    suspend operator fun invoke(): List<CountryModel> = repository.getAllCountries()
 }

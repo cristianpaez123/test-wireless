@@ -1,7 +1,6 @@
 package com.example.testwireless.ui.view
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity(), CountriesAdapter.OnCountryClickListene
         })
     }
 
-    fun initRecyclerView() {
+    private fun initRecyclerView() {
         countriesAdapter = CountriesAdapter(this)
 
         with(binding.rcvCountries) {
@@ -84,12 +83,12 @@ class MainActivity : AppCompatActivity(), CountriesAdapter.OnCountryClickListene
         }
     }
 
-    fun showLoading() {
-        binding.progressLoading.setVisibility(View.VISIBLE)
+    private fun showLoading() {
+        binding.progressLoading.visibility = View.VISIBLE
     }
 
-    fun hideLoading() {
-        binding.progressLoading.setVisibility(View.GONE)
+    private fun hideLoading() {
+        binding.progressLoading.visibility = View.GONE
     }
 
     override fun onCountryClicked(country: CountryModel) {

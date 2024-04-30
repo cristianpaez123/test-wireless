@@ -7,10 +7,10 @@ import javax.inject.Inject
 
 class CountryService @Inject constructor(private val api: CountryApi) {
 
-    suspend fun getCountry():List<CountryModel>{
-        return withContext(Dispatchers.IO){
+    suspend fun getCountry(): List<CountryModel> {
+        return withContext(Dispatchers.IO) {
             val respose = api.getAllCountries()
-            respose?: emptyList()
+            respose ?: emptyList()
         }
     }
 }

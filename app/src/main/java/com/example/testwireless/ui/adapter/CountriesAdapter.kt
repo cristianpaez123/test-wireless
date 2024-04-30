@@ -51,7 +51,7 @@ class CountriesAdapter(
             country.capital?.let {
                 binding.txtCapital.text = country.capital[MAIN_CAPITAL_POSITION]
             } ?: run {
-                binding.txtCapital.text = "NO TIENE CAPITAL"
+                binding.txtCapital.text = NO_CAPITAL
             }
             binding.txtCountry.text = country.name?.official
             Picasso.get().load(country.flag.png).into(binding.imvFlag)
@@ -69,7 +69,8 @@ class CountriesAdapter(
         }
     }
 
-    companion object{
+    companion object {
         const val MAIN_CAPITAL_POSITION = 0
+        const val NO_CAPITAL = "NO TIENE CAPITAL"
     }
 }

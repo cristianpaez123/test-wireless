@@ -45,8 +45,8 @@ class CountryViewModel @Inject constructor(
         }
     }
 
-    sealed class GetDataCountryState() {
-        object Loading : GetDataCountryState()
+    sealed class GetDataCountryState {
+        data object Loading : GetDataCountryState()
         data class DataLoaded(val heroResponseResult: List<CountryModel>) : GetDataCountryState()
         data class Error(val message: String) : GetDataCountryState()
     }
