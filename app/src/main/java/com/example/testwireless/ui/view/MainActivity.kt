@@ -1,5 +1,7 @@
 package com.example.testwireless.ui.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,13 +13,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testwireless.R
+import com.example.testwireless.data.model.CountryModel
 import com.example.testwireless.databinding.ActivityMainBinding
 import com.example.testwireless.ui.adapter.CountriesAdapter
 import com.example.testwireless.ui.viewModel.CountryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CountriesAdapter.OnCountryClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private val countryViewModel: CountryViewModel by viewModels()
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchCountry() {
-        binding.editextSearchCountry.addTextChangedListener(object: TextWatcher{
+        binding.editextSearchCountry.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -52,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initRecyclerView() {
-        countriesAdapter = CountriesAdapter()
+        countriesAdapter = CountriesAdapter(this)
 
         with(binding.rcvCountries) {
             layoutManager = GridLayoutManager(this@MainActivity, 1)
@@ -87,5 +90,11 @@ class MainActivity : AppCompatActivity() {
 
     fun hideLoading() {
         binding.progressLoading.setVisibility(View.GONE)
+    }
+
+    override fun onCountryClicked(country: CountryModel) {
+        val intent = Intent(this, DetailCountry::class.java)
+        intent.putExtra("country", country)
+        startActivity(intent)
     }
 }

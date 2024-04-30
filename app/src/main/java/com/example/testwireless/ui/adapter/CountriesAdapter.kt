@@ -10,7 +10,9 @@ import com.example.testwireless.data.model.CountryModel
 import com.example.testwireless.databinding.ItemCountryAdapterBinding
 import com.squareup.picasso.Picasso
 
-class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>() {
+class CountriesAdapter(
+    private val onCountryClickListener: OnCountryClickListener
+) : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>() {
 
     var dataCountries: List<CountryModel> = emptyList()
 
@@ -18,6 +20,10 @@ class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder
     fun setCountries(dataCountries: List<CountryModel>) {
         this.dataCountries = dataCountries
         notifyDataSetChanged()
+    }
+
+    interface OnCountryClickListener {
+        fun onCountryClicked(country: CountryModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
@@ -50,6 +56,16 @@ class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder
             binding.txtCountry.text = country.name?.official
             Picasso.get().load(country.flag.png).into(binding.imvFlag)
             binding.executePendingBindings()
+        }
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val country = dataCountries[position]
+                    onCountryClickListener.onCountryClicked(country)
+                }
+            }
         }
     }
 
