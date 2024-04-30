@@ -41,14 +41,19 @@ class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder
 
         fun bind(country: CountryModel) {
             binding.country = country
-            if (country.capital.isNullOrEmpty()) {
+
+            country.capital?.let {
+                binding.txtCapital.text = country.capital[MAIN_CAPITAL_POSITION]
+            } ?: run {
                 binding.txtCapital.text = "NO TIENE CAPITAL"
-            } else {
-                binding.txtCapital.text = country.capital[0]
             }
-            binding.txtCountry.text = country.name.official
+            binding.txtCountry.text = country.name?.official
             Picasso.get().load(country.flag.png).into(binding.imvFlag)
             binding.executePendingBindings()
         }
+    }
+
+    companion object{
+        const val MAIN_CAPITAL_POSITION = 0
     }
 }

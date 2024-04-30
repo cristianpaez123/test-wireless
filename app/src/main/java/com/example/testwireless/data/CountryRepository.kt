@@ -5,8 +5,13 @@ import com.example.testwireless.data.network.CountryService
 import javax.inject.Inject
 
 class CountryRepository @Inject constructor(private val api: CountryService){
+
+    var countries: List<CountryModel> = emptyList()
+
     suspend fun getAllCountries():List<CountryModel>{
-        val response = api.getCountry()
-        return response
+        if (countries.isNotEmpty()) return countries
+        val countries = api.getCountry()
+        return countries
     }
+
 }

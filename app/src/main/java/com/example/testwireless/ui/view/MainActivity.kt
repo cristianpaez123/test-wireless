@@ -1,6 +1,8 @@
 package com.example.testwireless.ui.view
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -34,14 +36,26 @@ class MainActivity : AppCompatActivity() {
         }
         initRecyclerView()
         setupObserver()
-        countryViewModel.onCreate()
+        searchCountry()
+    }
+
+    private fun searchCountry() {
+        binding.editextSearchCountry.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                countryViewModel.filterCountries(s.toString())
+            }
+        })
     }
 
     fun initRecyclerView() {
         countriesAdapter = CountriesAdapter()
 
         with(binding.rcvCountries) {
-            layoutManager = GridLayoutManager(this@MainActivity, 3)
+            layoutManager = GridLayoutManager(this@MainActivity, 1)
             adapter = countriesAdapter
         }
     }
@@ -57,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
                 is CountryViewModel.GetDataCountryState.DataLoaded -> {
                     hideLoading()
-                     countriesAdapter?.setCountries(state.heroResponseResult)
+                    countriesAdapter?.setCountries(state.heroResponseResult)
                 }
 
                 is CountryViewModel.GetDataCountryState.Error -> {
