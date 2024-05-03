@@ -1,9 +1,10 @@
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -70,7 +71,10 @@ dependencies {
     //hilt
     implementation("com.google.dagger:hilt-android:2.48")
     //piccaso
-    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.squareup.picasso:picasso:2.8")
+    //navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7 ")
 
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 

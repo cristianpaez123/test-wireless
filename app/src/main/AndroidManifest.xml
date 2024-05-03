@@ -16,9 +16,6 @@
         android:theme="@style/Theme.TestWireless"
         tools:targetApi="31">
         <activity
-            android:name=".ui.view.DetailCountry"
-            android:exported="false" />
-        <activity
             android:name=".ui.view.MainActivity"
             android:exported="true">
             <intent-filter>

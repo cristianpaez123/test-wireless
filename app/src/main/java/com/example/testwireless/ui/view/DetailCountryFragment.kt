@@ -3,42 +3,43 @@ package com.example.testwireless.ui.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.testwireless.R
 import com.example.testwireless.data.model.CountryModel
-import com.example.testwireless.databinding.ActivityDetailCountryBinding
+import com.example.testwireless.databinding.FragmentDetailCountryBinding
 import com.example.testwireless.ui.viewModel.DetailCountryViewModel
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
 const val MAIN_CAPITAL_POSITION = 0
 const val NO_CAPITAL = "NO TIENE CAPITAL"
 
-class DetailCountry : AppCompatActivity() {
-
-    private lateinit var binding: ActivityDetailCountryBinding
+@AndroidEntryPoint
+class DetailCountryFragment : Fragment() {
+    private lateinit var binding: FragmentDetailCountryBinding
     private val detailCountryViewModel: DetailCountryViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityDetailCountryBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.detailCountry)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentDetailCountryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         getCountry()
         setupObserver()
     }
 
+
     private fun setupObserver() {
-        detailCountryViewModel.country.observe(this, Observer { country ->
+        detailCountryViewModel.country.observe(viewLifecycleOwner, Observer { country ->
             Picasso.get().load(country.flag.png).into(binding.imvFlag)
             binding.apply {
 
@@ -59,8 +60,8 @@ class DetailCountry : AppCompatActivity() {
     }
 
     private fun getCountry() {
-        val countryModel: CountryModel = intent.getSerializableExtra("country") as CountryModel
-        detailCountryViewModel.setCountry(countryModel)
+        val country = arguments?.getSerializable("country") as CountryModel
+        detailCountryViewModel.setCountry(country)
     }
 
     private fun goMapWebSite(url: String) {
