@@ -15,7 +15,7 @@ class CountriesAdapter(
 ) : RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>() {
 
     var dataCountries: List<CountryModel> = emptyList()
-//dd
+
     @SuppressLint("NotifyDataSetChanged")
     fun setCountries(dataCountries: List<CountryModel>) {
         this.dataCountries = dataCountries
